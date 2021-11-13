@@ -31,7 +31,6 @@ def c_url(ordid,uid):
         "url": "pages/launch/follow/index",
         "orderIds": ordid
     }
-
     # 对请求数据进行封装
     r = requests.get(url=url, json=data, headers=header)
     print(r.json())

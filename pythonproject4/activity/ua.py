@@ -2,6 +2,12 @@
 import requests
 from activity.ub import b_url
 from activity.uc import c_url
+import random
+# 随机生成一个手机号码
+def genrate_phone():
+    phone = random.randint(10000000000, 99999999999)
+    phone = '1{0}'.format(phone)
+    return phone
 def a_url():
     # 构建url
     # 构建请求头部
@@ -32,7 +38,7 @@ def a_url():
     }
     # 构建请求数据
     data = {
-        'mobile': '17788000021',
+        'mobile': genrate_phone(),
         'code': '1813',
         'channel': '12'
     }
@@ -53,3 +59,4 @@ if __name__ == "__main__":
     uid = a_url()
     print("获取到的用户id："+uid)
     c_url(b_url(uid), uid)
+    genrate_phone()
