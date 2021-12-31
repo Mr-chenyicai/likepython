@@ -29,7 +29,7 @@ class Add_teacher(object):
         print("用户id："+rst["payload"]["id"])
         return rst["payload"]["id"]
 #  选择级别后，获取订单号
-    def get_ordernumber(self):
+    def get_ordernumber(self,uid):
         url = "https://test.meixiu.mobi/api/o/v1/buy/distributeAndFission"
         header = {
             'authorization': 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiI0NTgwNTIyOTY3NzgwNTk3NzYiLCJzdWIiOiI0NTgwNTIyOTY3NzgwNTk3NzYiLCJpYXQiOjE1ODkzNzQ2NDMsImF1ZCI6InVzZXIiLCJleHAiOjE1OTgwMTQ2NDN9.VMeHKQHHOHb_9Hd764BjDGQwYLwHrgbavqHcvisKGeFu5ZWAFGckS60dkNVHo20x_tU8vGlnDS8AC97IKTBFEw',
@@ -56,7 +56,7 @@ class Add_teacher(object):
             'targetAccount': '0',
             'topicId': '21',
             'type': "ALONE",
-            'userId': self.get_userid()
+            'userId': uid
         }
         # 对请求数据进行封装
         print("ub请求参数：" + str(data))
@@ -68,6 +68,7 @@ class Add_teacher(object):
         return res['payload']['orderId']
 #  添加老师
     def get_teacher(self):
+        userid = self.get_userid()
         url = 'https://test.meixiu.mobi/api/wp/v1/weixinProgram/getUrlSchema?type=10&uid=655142451753598976&url=pages/launch/follow/index&orderIds=579727939407758555'
         # 构建请求头
         header = {
@@ -75,9 +76,9 @@ class Add_teacher(object):
         }
         data = {
             "type": "10",
-            "uid": self.get_userid(),
+            "uid": userid,
             "url": "pages/launch/follow/index",
-            "orderIds": self.get_ordernumber()
+            "orderIds": self.get_ordernumber(userid)
         }
         # 对请求数据进行封装
         r = requests.get(url=url, json=data, headers=header)
@@ -88,9 +89,6 @@ class Add_teacher(object):
 
 
 
-add_teacher = Add_teacher()
-add_teacher.get_userid()
-
-add_teacher.get_ordernumber()
-
-add_teacher.get_teacher()
+if __name__ == '__main__':
+    add_teacher = Add_teacher()
+    add_teacher.get_teacher()
