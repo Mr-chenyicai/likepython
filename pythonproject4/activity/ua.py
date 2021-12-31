@@ -13,7 +13,7 @@ def a_url():
     # 构建请求头部
     url = 'https://test.meixiu.mobi/api/u/v1/user/login'
     header = {
-        # 'Content-Type': 'application/json, text/plain, */*',
+        'Content-Type': 'application/json, text/plain, */*',
         'authority': 'test.meixiu.mobi',
         'method': 'POST',
         'path': '/api/u/v1/user/login',

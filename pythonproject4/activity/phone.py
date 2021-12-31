@@ -6,7 +6,19 @@ def genrate_phone():
     print(phone)
     return phone
 def haha():
+    for i in range(10):
+        print(i)
+
     genrate_phone()
 if __name__ == '__main__':
-    # genrate_phone()
     haha()
+name = "张三"
+
+# def sum2(num1,num2):
+#     result = num1+num2
+#     print("求他们两个数的和为：%d + %d = %d" % (num1, num2, result))
+# sum2(10,20)
+#
+# def print_line(char):
+#     print(char * 100)
+# print_line('=')
